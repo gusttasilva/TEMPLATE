@@ -1,0 +1,46 @@
+using System.Diagnostics;
+using Microsoft.AspNetCore.Mvc;
+using LHPet.Models;
+
+namespace LHPet.Controllers;
+
+public class HomeController : Controller
+{
+    private readonly ILogger<HomeController> _logger;
+
+    public HomeController(ILogger<HomeController> logger)
+    {
+        _logger = logger;
+    }
+
+    public IActionResult Index()
+    {
+        return View();
+    }
+
+    public IActionResult Privacy()
+    {
+//instância de clientes 
+Históricoderevisões cliente1 = new Históricoderevisões(01/03/2023, "VS 1.0", "ALUNO SENAI 1", "Gustavo da Silva");
+Históricoderevisões cliente2 = new Históricoderevisões(02/03/2023, "VS 2.0", "ALUNO SENAI 2", "LUAN NUNES");
+
+
+
+//lista clientes
+List<Históricoderevisões> listaClientes = new List<Históricoderevisões>();
+listaClientes.Add(cliente1);
+listaClientes.Add(cliente2);
+
+
+ViewBag.listaClientes = listaClientes;
+
+
+        return View();
+    }
+
+    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
+    public IActionResult Error()
+    {
+        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+    }
+}
